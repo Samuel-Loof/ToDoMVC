@@ -6,7 +6,9 @@ För nedåtpilen till vänster om textfältet räcker det med följande emoji: �
 Ni behöver inte återskapa "pappershög"-effekten under listan över anteckningar. Skuggan runt huvudinnehållet ska dock finnas med.
 Till skillnad från tidigare inlämningsuppgifter behöver ni här återskapa samma design som i exemplet,
  inklusive typsnitt, marginaler, textstorlekar, etc. Det är dock tillåtet att välja andra färger och/eller bakgrundsgrafik,
-om ni vill göra den till "er egen".*/
+om ni vill göra den till "er egen".
+media: hover*/
+
 
 @charset "utf-8";
 
@@ -92,8 +94,7 @@ header{
 	border: 1px solid #999;
 	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+	
 }
 
 input {
@@ -128,7 +129,6 @@ ul li::before{
     height: 28px;
     width: 28px;
     border-radius: 50%;
-    background-image: url(images/uncheked.png);
     background-size: cover;
     background-position: center;
     top: 12px;
@@ -140,9 +140,6 @@ ul li .checked {
     text-decoration: line-through;
 }
 
-ul li.checked::before{
-    background-image: url(images/checked.png);
-}
 
 .hidden {
 	display: none;
