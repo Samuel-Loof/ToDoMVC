@@ -22,7 +22,7 @@ body {
 }
 
 body {
-	font: px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font: 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	line-height: 1.4em;
 	background: #f5f5f5;
 	color: #111111;
@@ -158,4 +158,34 @@ ul li .checked {
 	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
 	            0 16px 0 -6px #f6f6f6,
 	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.filters {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+}
+
+.filters a {
+    text-decoration: none;
+    color: #888;
+}
+
+.filters a.selected {
+    border: 1px solid rgba(175, 47, 47, 0.2);
+}
+
+.clear-completed {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #888;
 }
