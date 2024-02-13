@@ -6,6 +6,8 @@
 // Ta bort alla färdiga anteckningar ("Clear completed").
 // Visa upp antingen alla anteckningar ("All"), alla ofärdiga anteckningar ("Active") eller alla färdiga anteckningar ("Completed").
 
+// 
+
 document.addEventListener('DOMContentLoaded', function() {
     const input = document.getElementById('input');
 

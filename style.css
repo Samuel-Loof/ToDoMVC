@@ -34,10 +34,6 @@ body {
 	font-weight: 300;
 }
 
-.header {
-    margin-top: 1px;
-}
-
 button {
 	margin: 0;
 	padding: 0;
@@ -55,8 +51,9 @@ button {
 }
 
 header{
-    color: red;
+    color: #b83f45;
     font-size: 40px;
+	font:  'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .todoapp {
