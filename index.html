@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,35 +8,31 @@
     <script src="main.js" defer></script>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <section class="todoapp"></section>
-    <header class="header">
-        <h1>todos</h1>
-        <input placeholder="What needs to be done?" autofocus
-        class="input"
-        id="input"
-        data-todo="new">
-    </header>
-<!-- This section should be hidden by default and shown when there are todos -->
-    <main class="main" style="display: none;" datatodo="main">
+    <section class="todoapp">
+        <header>
+            <h1>todos</h1>
+            <input class="input" placeholder="What needs to be done?" autofocus id="input" data-todo="new">
+        </header>
+    </section>
+
+    <!-- This section should be hidden by default and shown when there are todos -->
+    <main class="main" style="display: none;">
         <div class="toggle-all-container">
-            <input id="toggleAll"
-            class="toggleAll"
-            type="checkbox"
-            data-todo="toggleAll">
+            <input id="toggleAll" class="toggleAll" type="checkbox" data-todo="toggleAll">
             <label for="toggleAll"> Mark all as complete</label>
         </div>
+        <ul id="todoList"></ul>
 
-        <ul id="todoList"></ul> 
-        
     </main>
 
     <!-- This footer should be hidden by default and shown when there are todos -->
 
-    <footer class="footer" data-todo="list"></footer>
+    <div class="footer" data-todo="list"></div>
     <!-- This should be `0 items left` by default -->
     <span class="todo-count" data-todo="count"><strong>0</strong> items left</span>
-  
+
     <ul class="filters" data-todo="filters">
         <li>
             <a class="selected" href="#/">All</a>
@@ -47,18 +44,14 @@
             <a href="#/completed">Completed</a>
         </li>
     </ul>
+  
+    <button class="clear-completed" data-todo="clear-completed" > Clear completed</button>
 
-    <!-- Hidden if no completed items are left ↓ -->
-    <button class="clear-completed" data-todo="clear-completed">
-        <a href="#/completed">Clear completed</a>
-    </button>
-
-</footer>
-</section>
-<footer class="info">
-    <p>Created by the TodoMVC Team</p>
-    <p>Part of TodoMVC</p>
-</footer>
+    <footer class="info">
+        <p>Created by the TodoMVC Team</p>
+        <p>Part of TodoMVC</p>
+    </footer>
 
 </body>
+
 </html>

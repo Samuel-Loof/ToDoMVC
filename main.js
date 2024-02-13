@@ -8,20 +8,17 @@
 
 // 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     const input = document.getElementById('input');
 
-    input.addEventListener('keydown', function(event) {
+    input.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
             // Prevent the form from being submitted if this input is part of a form.
             event.preventDefault();
 
-            // Call the function to create a to-do item.
-            createTodo(input);
-
             const todoText = input.value.trim();
             if (todoText) { // Check if the input is not empty
-                createTodo({id: Date.now(), text: todoText, completed: false});
+                createTodo({ id: Date.now(), text: todoText, completed: false });
                 input.value = ''; // Clear the input field
             } else {
                 alert("Please enter a valid task");
@@ -40,6 +37,15 @@ function createTodo(todo) {
     li.textContent = todo.text;
     li.dataset.id = todo.id;
 
+    // delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "❌";
+
+    // Pass the li element to deleteTodo
+    deleteBtn.onclick = function() { deleteTodo(li); };
+    li.appendChild(deleteBtn);
+
+
     if (todo.completed) {
         li.classList.add("completed");
     }
@@ -47,9 +53,19 @@ function createTodo(todo) {
     const list = document.getElementById('todoList');
     list.appendChild(li);
 
-    // Show the main section and footer if hidden
     document.querySelector('.main').style.display = '';
     document.querySelector('.footer').style.display = '';
+}
+
+function deleteTodo(li) {
+    //remove the li we created
+    li.remove();
+
+    const list = document.getElementById('todoList');
+    if (list.children.length === 0) {
+        document.querySelector('.main').style.display = 'none';
+        document.querySelector('footer').style.display = 'none';
+    }
 }
 
 
