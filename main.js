@@ -1,4 +1,4 @@
-// se till att sidan uppdateras om man klickar på t.ex. mark all as complete, sen klickar "active"
+
 // Se hur många ofärdiga anteckningar som återstår ("X items left").
 // Markera alla anteckningar som färdiga/ofärdiga (nedåtpilen till vänster om textfältet).
 // Ta bort alla färdiga anteckningar ("Clear completed").
@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Sets up the listener for the todo input field to create a new todo on 'Enter'
 function setupInputListener() {
     const input = document.getElementById('input');
     input.addEventListener('keydown', function (event) {
@@ -101,6 +100,7 @@ function applyFilter(filter) {
                 break;
         }
     });
+    
 }
 
 // Creates a new todo item and adds it to the list
@@ -110,7 +110,7 @@ function createTodo(todo) {
         return;
     }
 
-    const li = document.createElement("li"); 
+    let li = document.createElement("li"); 
     li.textContent = todo.text; // Set the text of the todo
     li.dataset.id = todo.id; // Assign an ID to the todo for potential future use
 
@@ -153,8 +153,14 @@ function toggleAllTodos(isCompleted) {
         } else {
             todo.classList.remove('completed');
         }
-    });
-    updateTodoCount(); // Update the count of active todos after toggling
+    }); 
+    updateTodoCount();
+    reapplyCurrentFilter() // Update the count of active todos after toggling
+}
+
+function reapplyCurrentFilter() {
+    const currentfilter = document.querySelector('.filters .selected').textContent;
+    applyFilter(currentfilter);
 }
 
 // Updates the visibility of the main section and footer based on todo count
