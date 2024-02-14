@@ -1,8 +1,5 @@
-/* Vänsterkolumnen (som beskriver ramverket Backbone.js) ska inte vara med.
- Istället för ikonerna som exemplet använder till vissa knappar kan ni istället använda följande:
+/* 
 För checkrutan till vänster om varje anteckning räcker det med en vanlig <input type="checkbox">, med större bredd/höjd än standard.
-För krysset som används för att ta bort enstaka anteckningar räcker det med följande emoji: ❌
-För nedåtpilen till vänster om textfältet räcker det med följande emoji: 🔽
 Ni behöver inte återskapa "pappershög"-effekten under listan över anteckningar. Skuggan runt huvudinnehållet ska dock finnas med.
 Till skillnad från tidigare inlämningsuppgifter behöver ni här återskapa samma design som i exemplet,
  inklusive typsnitt, marginaler, textstorlekar, etc. Det är dock tillåtet att välja andra färger och/eller bakgrundsgrafik,
@@ -17,8 +14,7 @@ body {
 	margin: 0;
 	padding: 0;
     text-align: center;
-    list-style-type: none;
-    
+    list-style-type: none;   
 }
 
 body {
@@ -32,6 +28,7 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-weight: 300;
+	display: grid;
 }
 
 header{
@@ -50,23 +47,6 @@ header{
 	color: #b83f45;
 }
 
-/* button {
-	margin: 0;
-	padding: 0;
-	border: 0;
-	background: none;
-	font-size: 100%;
-	vertical-align: baseline;
-	font-family: inherit;
-	font-weight: inherit;
-	color: inherit;
-	-webkit-appearance: none;
-	appearance: none;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-} */
-
-
 .todoapp {
 	background: #fff;
 	margin: 130px 0 40px 0;
@@ -79,8 +59,20 @@ header{
 	padding: 16px 16px 16px 60px;
 	height: 65px;
 	border: none;
-	background: rgba(0, 0, 0, 0.003);
-	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+	background: rgba(197, 10, 10, 0.003);
+}
+
+.input:focus {
+    outline: none; /* Removes the default outline */
+    border: 1px solid #b83f45; /* Adds a red border */
+    box-shadow: 0 0 3px #b83f45; /* Adds a glow effect with a red color */
+}
+
+
+.input-container {
+    position: relative;
+    font-size: 24px;
+    width: 100%;
 }
 
 .input,
@@ -94,7 +86,7 @@ header{
 	line-height: 1.4em;
 	color: inherit;
 	padding: 6px;
-	border: 1px solid #999;
+	border: 1px solid #fdfcfc;
 	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
 	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
@@ -113,6 +105,66 @@ header{
 	font-style: italic;
 	font-weight: 400;
 	color: rgba(0, 0, 0, 0.4);
+}
+
+.toggle-all + label:before {
+    content: '❯';
+    display: inline-block;
+    font-size: 22px;
+    color: #949494;
+    padding: 10px 27px 10px 27px;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+.toggle-all + label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 65px;
+    font-size: 0;
+    position: absolute;
+    top: -65px;
+    left: -0;
+}
+
+label {
+	cursor: default;
+}
+
+.input {
+    padding-left: 60px; /* Adjust so the text does not overlap the arrow */
+}
+
+#todoList li {
+    border: 5px solid #ffffff;
+    list-style-type: none; 
+    margin-bottom: 5px; 
+    background-color: #f9f9f9; 
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    justify-content: space-between;
+    box-shadow: 0 1px 1px rgba(185, 175, 175, 0.954);
+}
+
+#todoList li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+#todoList li button {
+    visibility: hidden;
+    position: absolute;
+    right: 10px;
+}
+
+#todoList li:hover button {
+    visibility: visible;
+}
+
+.todo-list li:hover .destroy {
+    display: block; /* Show the button on hover */
 }
 
 ul li {
@@ -163,15 +215,24 @@ ul li .checked {
 .footer {
     display: flex;
     justify-content: space-between;
+	align-items: center;
     padding: 10px;
     font-size: 14px;
 }
 
+.todo-count {
+	float: left; /* Remove? */
+}
+
 .filters {
     list-style-type: none;
-    padding: 0;
     display: flex;
     gap: 10px;
+	margin: 0;
+    padding: 0;
+    list-style: none;
+    position: relative;
+    display: inline-block;
 }
 
 .filters a {
@@ -180,7 +241,11 @@ ul li .checked {
 }
 
 .filters a.selected {
-    border: 1px solid rgba(175, 47, 47, 0.2);
+	border: 1px solid #b83f45; /* Red border for the selected filter */
+    color: #b83f45; /* Optional: Change the text color to red as well */
+    padding: 3px 7px; /* Adds some padding for visual enhancement */
+    border-radius: 3px; /* Optional: Rounds the corners for a smoother look */
+	
 }
 
 .clear-completed {
@@ -188,4 +253,4 @@ ul li .checked {
     border: none;
     cursor: pointer;
     color: #888;
-}
+} 

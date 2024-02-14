@@ -158,6 +158,7 @@ function toggleAllTodos(isCompleted) {
     reapplyCurrentFilter() // Update the count of active todos after toggling
 }
 
+
 function reapplyCurrentFilter() {
     const currentfilter = document.querySelector('.filters .selected').textContent;
     applyFilter(currentfilter);
