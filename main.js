@@ -1,6 +1,6 @@
 
-// Fixa nedåtpil istället för texten "mark all as completed"
-// checkbox för att kryssa i "completed"
+// update items left when checking a item in the checkbox
+// When checking all items, toggle checkbox
 
 // Wait until the DOM is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', function () {
@@ -37,7 +37,7 @@ function setupInputListener() {
     });
 }
 
-// Sets up the listener for the clear completed button
+
 function setupClearCompletedListener() {
     const clearCompletedButton = document.querySelector('.clear-completed');
     clearCompletedButton.addEventListener('click', clearCompletedTodos);
@@ -115,11 +115,17 @@ function createTodo(todo) {
     let checkbox = document.createElement("input");
     checkbox.type = 'checkbox';
     checkbox.className = 'todo-checkbox';
-    checkbox.id = 'todo-checkbox' + todo.id;
+    checkbox.id = 'todo-checkbox-' + todo.id; 
     checkbox.checked = todo.completed;
     checkbox.addEventListener('change', function() {
         li.classList.toggle("completed", checkbox.checked);
+        li.classList.add("temp-red-border"); // Add temporary red border class
+        setTimeout(() => {
+            li.classList.remove("temp-red-border"); 
+        }, 2000); 
     });
+
+    
 
     let checkboxLabel = document.createElement("label");
     checkboxLabel.setAttribute("for", checkbox.id);
@@ -154,6 +160,7 @@ function createTodo(todo) {
     updateVisibilityOfMainAndFooter();
     updateTodoCount();
 }
+
 
 function deleteTodo(li) {
     li.remove(); // Remove the specified todo item

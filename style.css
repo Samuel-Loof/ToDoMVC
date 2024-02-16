@@ -1,9 +1,10 @@
 /* 
-För checkrutan till vänster om varje anteckning räcker det med en vanlig <input type="checkbox">, med större bredd/höjd än standard.
 Ni behöver inte återskapa "pappershög"-effekten under listan över anteckningar. Skuggan runt huvudinnehållet ska dock finnas med.
- inklusive typsnitt, marginaler, textstorlekar, etc. Det är dock tillåtet att välja andra färger och/eller bakgrundsgrafik,
-om ni vill göra den till "er egen".
+Till skillnad från tidigare inlämningsuppgifter behöver ni här återskapa samma design som i exemplet, inklusive typsnitt, marginaler,
+textstorlekar, etc. Det är dock tillåtet att välja andra färger och/eller bakgrundsgrafik, om ni vill göra den till "er egen".
 media: hover*/
+
+/* reactive layout */
 
 
 @charset "utf-8";
@@ -133,11 +134,12 @@ label {
 }
 
 .todo-text {
-    padding-left: 5px;
+    padding-left: 15px;
     flex-grow: 1;
     text-align: start;
 }
 
+/* Existing styles */
 /* Hide the default checkbox */
 .todo-checkbox {
     display: none;
@@ -168,6 +170,16 @@ label {
     transform: translate(-50%, -50%);
     font-size: 20px; 
 }
+
+.todo-item.temp-red-border {
+    border: 2px solid red; /* Temporary red border */
+    transition: border 0.3s ease; /* Smooth transition for the border color */
+}
+
+.temp-red-border {
+    border: 2px solid red; /* Adjust the style as needed */
+}
+
 
 #todoList li {
     border: 5px solid #ffffff;
