@@ -1,7 +1,6 @@
 /* 
 För checkrutan till vänster om varje anteckning räcker det med en vanlig <input type="checkbox">, med större bredd/höjd än standard.
 Ni behöver inte återskapa "pappershög"-effekten under listan över anteckningar. Skuggan runt huvudinnehållet ska dock finnas med.
-Till skillnad från tidigare inlämningsuppgifter behöver ni här återskapa samma design som i exemplet,
  inklusive typsnitt, marginaler, textstorlekar, etc. Det är dock tillåtet att välja andra färger och/eller bakgrundsgrafik,
 om ni vill göra den till "er egen".
 media: hover*/
@@ -47,19 +46,30 @@ header{
 	color: #b83f45;
 }
 
-.todoapp {
+/* .todoapp {
 	background: #fff;
 	margin: 130px 0 40px 0;
 	position: relative;
 	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
 	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
+} */
 
 .input {
 	padding: 16px 16px 16px 60px;
+    padding-left: 70px;
 	height: 65px;
 	border: none;
 	background: rgba(197, 10, 10, 0.003);
+}
+
+.input::before {
+    content: '🔽'; /* Your arrow */
+    font-size: 22px; /* Adjust size as needed */
+    color: #949494; /* Arrow color */
+    position: absolute;
+    left: 10px; /* Distance from the left side of the input field */
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%); /* Center correctly based on height */
 }
 
 .input:focus {
@@ -107,28 +117,6 @@ header{
 	color: rgba(0, 0, 0, 0.4);
 }
 
-.toggle-all + label:before {
-    content: '❯';
-    display: inline-block;
-    font-size: 22px;
-    color: #949494;
-    padding: 10px 27px 10px 27px;
-    -webkit-transform: rotate(90deg);
-    transform: rotate(90deg);
-}
-
-.toggle-all + label {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 45px;
-    height: 65px;
-    font-size: 0;
-    position: absolute;
-    top: -65px;
-    left: -0;
-}
-
 label {
 	cursor: default;
 }
@@ -137,11 +125,56 @@ label {
     padding-left: 60px; /* Adjust so the text does not overlap the arrow */
 }
 
+.todo-item {
+    padding-left: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.todo-text {
+    padding-left: 5px;
+    flex-grow: 1;
+    text-align: start;
+}
+
+/* Hide the default checkbox */
+.todo-checkbox {
+    display: none;
+}
+
+.custom-checkbox-label {
+    display: inline-block;
+    width: 25px; 
+    height: 25px; 
+    border-radius: 50%; 
+    background: #eee; 
+    cursor: pointer;
+    position: relative;
+    border: 2px solid #ccc; 
+}
+
+.todo-checkbox:checked + .custom-checkbox-label {
+    background: #4CAF50; /* Green background */
+    border-color: #4CAF50; /* Green border */
+}
+
+.todo-checkbox:checked + .custom-checkbox-label::after {
+    content: '✔'; /* Checkmark symbol */
+    color: white; /* Checkmark color */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px; 
+}
+
 #todoList li {
     border: 5px solid #ffffff;
     list-style-type: none; 
     margin-bottom: 5px; 
     background-color: #f9f9f9; 
+    width: 400px;
     display: flex;
     align-items: center;
     background-color: #fff;
@@ -214,19 +247,17 @@ ul li .checked {
 
 .footer {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
 	align-items: center;
     padding: 10px;
     font-size: 14px;
 }
 
-.todo-count {
-	float: left; /* Remove? */
-}
-
 .filters {
     list-style-type: none;
     display: flex;
+    flex-direction: row;
     gap: 10px;
 	margin: 0;
     padding: 0;
@@ -240,17 +271,17 @@ ul li .checked {
     color: #888;
 }
 
-.filters a.selected {
-	border: 1px solid #b83f45; /* Red border for the selected filter */
-    color: #b83f45; /* Optional: Change the text color to red as well */
-    padding: 3px 7px; /* Adds some padding for visual enhancement */
-    border-radius: 3px; /* Optional: Rounds the corners for a smoother look */
-	
-}
-
 .clear-completed {
     background: none;
     border: none;
     cursor: pointer;
     color: #888;
 } 
+
+.info {
+    margin: 65px auto 0;
+    color: #4d4d4d;
+    font-size: 11px;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+    text-align: center;
+}

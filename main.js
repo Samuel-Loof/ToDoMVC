@@ -1,8 +1,6 @@
 
-// Se hur många ofärdiga anteckningar som återstår ("X items left").
-// Markera alla anteckningar som färdiga/ofärdiga (nedåtpilen till vänster om textfältet).
-// Ta bort alla färdiga anteckningar ("Clear completed").
-// Visa upp antingen alla anteckningar ("All"), alla ofärdiga anteckningar ("Active") eller alla färdiga anteckningar ("Completed").
+// Fixa nedåtpil istället för texten "mark all as completed"
+// checkbox för att kryssa i "completed"
 
 // Wait until the DOM is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', function () {
@@ -14,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function () {
     updateVisibilityOfMainAndFooter(); // Update visibility based on todo count
     updateTodoCount(); // Update the displayed count of active todos
     // Listen for clicks on the todo list to handle delete button clicks using event delegation
-    document.getElementById('todoList').addEventListener('click', function(event) {
+    document.getElementById('todoList').addEventListener('click', function (event) {
         if (event.target.tagName === 'BUTTON') {
             deleteTodo(event.target.parentNode);
         }
@@ -25,7 +23,7 @@ function setupInputListener() {
     const input = document.getElementById('input');
     input.addEventListener('keydown', function (event) {
         if (event.key === 'Enter') {
-            event.preventDefault(); 
+            event.preventDefault();
             const todoText = input.value.trim();
             if (todoText) {
                 createTodo({ id: Date.now(), text: todoText, completed: false });
@@ -49,8 +47,8 @@ function setupClearCompletedListener() {
 function setupFilterListeners() {
     const filters = document.querySelectorAll('.filters a');
     filters.forEach(filter => {
-        filter.addEventListener('click', function(e) {
-            e.preventDefault(); 
+        filter.addEventListener('click', function (e) {
+            e.preventDefault();
             applyFilter(this.textContent); // Apply the selected filter
             // Update the filter selection visually
             document.querySelector('.filters .selected').classList.remove('selected');
@@ -62,7 +60,7 @@ function setupFilterListeners() {
 // Sets up the listener for the toggle all checkbox
 function setupToggleAllListener() {
     const toggleAllCheckbox = document.getElementById('toggleAll');
-    toggleAllCheckbox.addEventListener('change', function() {
+    toggleAllCheckbox.addEventListener('change', function () {
         toggleAllTodos(this.checked); // Toggle completion state of all todos
         updateTodoCount(); // Update the count of active todos
     });
@@ -89,44 +87,69 @@ function applyFilter(filter) {
     const todos = document.querySelectorAll('#todoList li');
     todos.forEach(todo => {
         switch (filter) {
-            case 'All': 
+            case 'All':
                 todo.style.display = '';
                 break;
-            case 'Active': 
+            case 'Active':
                 todo.style.display = todo.classList.contains('completed') ? 'none' : '';
                 break;
-            case 'Completed': 
+            case 'Completed':
                 todo.style.display = todo.classList.contains('completed') ? '' : 'none';
                 break;
         }
     });
-    
+
 }
 
-// Creates a new todo item and adds it to the list
 function createTodo(todo) {
     if (!todo.text) {
         console.error("Todo text is empty");
         return;
     }
 
-    let li = document.createElement("li"); 
-    li.textContent = todo.text; // Set the text of the todo
-    li.dataset.id = todo.id; // Assign an ID to the todo for potential future use
+    let li = document.createElement("li");
+    li.dataset.id = todo.id;
+    li.className = 'todo-item'; // Add class for styling
+
+    // Create the checkbox
+    let checkbox = document.createElement("input");
+    checkbox.type = 'checkbox';
+    checkbox.className = 'todo-checkbox';
+    checkbox.id = 'todo-checkbox' + todo.id;
+    checkbox.checked = todo.completed;
+    checkbox.addEventListener('change', function() {
+        li.classList.toggle("completed", checkbox.checked);
+    });
+
+    let checkboxLabel = document.createElement("label");
+    checkboxLabel.setAttribute("for", checkbox.id);
+    checkboxLabel.className = 'custom-checkbox-label';
+
+    // Append the checkbox
+    li.appendChild(checkbox);
+    li.appendChild(checkboxLabel);
+
+    // Wrap the text in a span for better control
+    let textSpan = document.createElement("span");
+    textSpan.className = 'todo-text';
+    textSpan.textContent = todo.text;
+    li.appendChild(textSpan);
 
     // Create and setup the delete button
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "❌";
-    deleteBtn.setAttribute('aria-label', 'Delete todo'); // Enhance accessibility
-    deleteBtn.onclick = function() { deleteTodo(li); }; // Setup the delete functionality
-    li.appendChild(deleteBtn); // Add the delete button to the todo item
+    deleteBtn.setAttribute('aria-label', 'Delete todo');
+    deleteBtn.onclick = function() { deleteTodo(li); };
+    li.appendChild(deleteBtn);
 
     if (todo.completed) {
-        li.classList.add("completed"); // Mark the todo as completed if applicable
+        li.classList.add("completed");
     }
 
     const list = document.getElementById('todoList');
-    list.appendChild(li); // Add the new todo to the list
+    list.appendChild(li);
+
+    // When toggling all as completed, make sure that the checkbox is toggled aswell
 
     updateVisibilityOfMainAndFooter();
     updateTodoCount();
@@ -147,13 +170,13 @@ function deleteTodo(li) {
 // Toggles the completion state of all todos based on the toggle all checkbox
 function toggleAllTodos(isCompleted) {
     const todos = document.querySelectorAll('#todoList li');
-    todos.forEach(function(todo) {
+    todos.forEach(function (todo) {
         if (isCompleted) {
             todo.classList.add('completed');
         } else {
             todo.classList.remove('completed');
         }
-    }); 
+    });
     updateTodoCount();
     reapplyCurrentFilter() // Update the count of active todos after toggling
 }
