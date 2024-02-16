@@ -1,7 +1,3 @@
-
-// update items left when checking a item in the checkbox
-// When checking all items, toggle checkbox
-
 // Wait until the DOM is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', function () {
     // Setup all event listeners and initial UI state
@@ -68,10 +64,9 @@ function setupToggleAllListener() {
 
 // Updates the count of todos that are not completed
 function updateTodoCount() {
-    const todos = document.querySelectorAll('#todoList li:not(.completed)');
-    const count = todos.length;
-    const todoCountElement = document.querySelector('.todo-count strong');
-    todoCountElement.textContent = count;
+    const todosNotCompleted = document.querySelectorAll('#todoList li:not(.completed)');
+    const count = todosNotCompleted.length;
+    document.querySelector('.todo-count strong').textContent = count;
 }
 
 // Clears all completed todos from the list
@@ -109,29 +104,29 @@ function createTodo(todo) {
 
     let li = document.createElement("li");
     li.dataset.id = todo.id;
-    li.className = 'todo-item'; // Add class for styling
+    li.className = 'todo-item';
 
     // Create the checkbox
     let checkbox = document.createElement("input");
     checkbox.type = 'checkbox';
     checkbox.className = 'todo-checkbox';
-    checkbox.id = 'todo-checkbox-' + todo.id; 
+    checkbox.id = 'todo-checkbox-' + todo.id;
     checkbox.checked = todo.completed;
-    checkbox.addEventListener('change', function() {
-        li.classList.toggle("completed", checkbox.checked);
-        li.classList.add("temp-red-border"); // Add temporary red border class
+
+    checkbox.addEventListener('change', function () {
+        li.classList.toggle("completed", this.checked);
+        updateTodoCount();
+        li.classList.add("temp-red-border"); //temporary red border class
         setTimeout(() => {
-            li.classList.remove("temp-red-border"); 
-        }, 2000); 
+            li.classList.remove("temp-red-border");
+        }, 2000);
     });
 
-    
 
     let checkboxLabel = document.createElement("label");
     checkboxLabel.setAttribute("for", checkbox.id);
     checkboxLabel.className = 'custom-checkbox-label';
 
-    // Append the checkbox
     li.appendChild(checkbox);
     li.appendChild(checkboxLabel);
 
@@ -145,7 +140,7 @@ function createTodo(todo) {
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "❌";
     deleteBtn.setAttribute('aria-label', 'Delete todo');
-    deleteBtn.onclick = function() { deleteTodo(li); };
+    deleteBtn.onclick = function () { deleteTodo(li); };
     li.appendChild(deleteBtn);
 
     if (todo.completed) {
@@ -178,12 +173,15 @@ function deleteTodo(li) {
 function toggleAllTodos(isCompleted) {
     const todos = document.querySelectorAll('#todoList li');
     todos.forEach(function (todo) {
-        if (isCompleted) {
-            todo.classList.add('completed');
-        } else {
-            todo.classList.remove('completed');
+
+        const checkbox = todo.querySelector('.todo-checkbox');
+        if (checkbox) {
+            checkbox.checked = isCompleted;
+
+            todo.classList.toggle("completed", isCompleted);
         }
     });
+
     updateTodoCount();
     reapplyCurrentFilter() // Update the count of active todos after toggling
 }
