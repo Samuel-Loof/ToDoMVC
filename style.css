@@ -47,40 +47,61 @@ header{
 	color: #b83f45;
 }
 
-/* .todoapp {
-	background: #fff;
-	margin: 130px 0 40px 0;
-	position: relative;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
-} */
-
 .input {
 	padding: 16px 16px 16px 60px;
     padding-left: 70px;
+    background-position: 10px center;
 	height: 65px;
 	border: none;
+    box-shadow: none;
 	background: rgba(197, 10, 10, 0.003);
 }
 
-.input::before {
-    content: '🔽'; /* Your arrow */
-    font-size: 22px; /* Adjust size as needed */
-    color: #949494; /* Arrow color */
-    position: absolute;
-    left: 10px; /* Distance from the left side of the input field */
-    top: 50%; /* Center vertically */
-    transform: translateY(-50%); /* Center correctly based on height */
+.toggle-all-label {
+    cursor: pointer;
+    margin-top: 20px;
+    
+}
+
+.toggle-all + label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 45px;
+	height: 65px;
+	font-size: 0;
+	position: absolute;
+	top: -65px;
+	left: -0;
+}
+
+#todoList li.completed label {
+	color: #949494;
+	text-decoration: line-through;
+}
+
+.toggle-all + label:before {
+	content: "❯";
+	display: inline-block;
+	font-size: 22px;
+	color: #949494;
+	padding: 10px 27px 10px 27px;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+.toggle-all:checked + label:before {
+	color: #484848;
 }
 
 .input:focus {
-    outline: none; /* Removes the default outline */
-    border: 1px solid #b83f45; /* Adds a red border */
-    box-shadow: 0 0 3px #b83f45; /* Adds a glow effect with a red color */
+    outline: none;
+    border: 1px solid #b83f45; 
+    box-shadow: 0 0 3px #b83f45; 
 }
 
-
 .input-container {
+    display: flex;
     position: relative;
     font-size: 24px;
     width: 100%;
@@ -123,7 +144,7 @@ label {
 }
 
 .input {
-    padding-left: 60px; /* Adjust so the text does not overlap the arrow */
+    padding-left: 35px; /* Adjust so the text does not overlap the arrow */
 }
 
 .todo-item {
@@ -139,8 +160,6 @@ label {
     text-align: start;
 }
 
-/* Existing styles */
-/* Hide the default checkbox */
 .todo-checkbox {
     display: none;
 }
@@ -157,13 +176,13 @@ label {
 }
 
 .todo-checkbox:checked + .custom-checkbox-label {
-    background: #4CAF50; /* Green background */
-    border-color: #4CAF50; /* Green border */
+    background: #4CAF50;
+    border-color: #4CAF50;
 }
 
 .todo-checkbox:checked + .custom-checkbox-label::after {
-    content: '✔'; /* Checkmark symbol */
-    color: white; /* Checkmark color */
+    content: '✔';
+    color: white; 
     position: absolute;
     left: 50%;
     top: 50%;
@@ -172,12 +191,12 @@ label {
 }
 
 .todo-item.temp-red-border {
-    border: 2px solid red; /* Temporary red border */
-    transition: border 0.3s ease; /* Smooth transition for the border color */
+    border: 2px solid red;
+    transition: border 0.3s ease; 
 }
 
 .temp-red-border {
-    border: 2px solid red; /* Adjust the style as needed */
+    border: 2px solid red;
 }
 
 
