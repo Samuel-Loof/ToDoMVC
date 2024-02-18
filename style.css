@@ -49,11 +49,25 @@ header{
 .input {
 	padding: 16px 16px 16px 60px;
     padding-left: 70px;
-    background-position: 10px center;
+    /* background-position: 10px center; */
 	height: 65px;
 	border: none;
     box-shadow: none;
 	background: rgba(197, 10, 10, 0.003);
+
+    background-image:
+    linear-gradient(45deg, transparent 50%, gray 50%),
+    linear-gradient(135deg, gray 50%, transparent 50%),
+    linear-gradient(to right, #ccc, #ccc);
+    background-position:
+    calc(100% - 20px) calc(1em + 2px),
+    calc(100% - 15px) calc(1em + 2px),
+    calc(100% - 2.5em) 0.5em;
+    background-size:
+    5px 5px,
+    5px 5px,
+    1px 1.5em;
+    background-repeat: no-repeat;
 }
 
 .toggle-all-label {
@@ -228,7 +242,6 @@ label {
 .todo-list li:hover .destroy {
     display: block; /* Show the button on hover */
 }
-/* hello */
 
 #todoList {
     margin: 0;
@@ -300,10 +313,6 @@ ul li::before{
     left: 8px;
 }
 
-ul li .checked {
-    color: #555;
-    text-decoration: line-through;
-}
 
 .hidden {
 	display: none;
@@ -353,29 +362,35 @@ ul li .checked {
 	border-color: #ce4646;
 }
 
-.filters {
-    list-style-type: none;
-    display: flex;
-    flex-direction: row;
-    gap: 10px;
-	margin: 0;
-    padding: 0;
-    list-style: none;
-    position: relative;
-    display: inline-block;
+.filters{
+    padding: 1px; /*change?*/
+}
+
+a{
+    font: 15px "Helvetica Neue";
+    color: #111111;
 }
 
 .filters a {
     text-decoration: none;
-    color: #888;
+}
+
+.todo-count {
+    font: 15px "Helvetica Neue";
+    color: #111111;
 }
 
 .clear-completed {
     background: none;
     border: none;
     cursor: pointer;
-    color: #888;
-} 
+    font: 15px "Helvetica Neue";
+    color: #111111;
+}
+
+.clear-completed:hover {
+    text-decoration: underline;
+}
 
 .info {
     margin: 65px auto 0;

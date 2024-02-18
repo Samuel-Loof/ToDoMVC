@@ -62,20 +62,38 @@ function setupToggleAllListener() {
     });
 }
 
-// Updates the count of todos that are not completed
+// Updates the count of todos items left
 function updateTodoCount() {
     const todosNotCompleted = document.querySelectorAll('#todoList li:not(.completed)');
     const count = todosNotCompleted.length;
-    document.querySelector('.todo-count strong').textContent = count;
+    // Determine the correct pluralization of "item"
+    const itemText = count === 1 ? 'item' : 'items';
+    // Update the text content to include the count and the correct pluralization of "item"
+    document.querySelector('.todo-count').textContent = count + ' ' + itemText + ' left';
+    ToggleClearCompletedButton();
 }
+
 
 // Clears all completed todos from the list
 function clearCompletedTodos() {
-    const completedTodos = document.querySelectorAll('#todoList li.completed');
+    let completedTodos = document.querySelectorAll('#todoList li.completed');
     completedTodos.forEach(todo => todo.remove()); // Remove each completed todo
-    updateVisibilityOfMainAndFooter(); // Check if main and footer should be hidden
-    updateTodoCount(); // Update the count of active todos
+    updateVisibilityOfMainAndFooter(); 
+    updateTodoCount(); 
 }
+
+function ToggleClearCompletedButton() {
+    const completedTodos = document.querySelectorAll('#todoList li.completed');
+    const clearCompletedButton = document.querySelector('.clear-completed');
+
+    if (completedTodos.length > 0) {
+        clearCompletedButton.style.display = ''; // Or 'inline', 'inline-block'
+    } else {
+        clearCompletedButton.style.display = 'none';
+    }
+}
+
+
 
 // Applies a filter to show all, active, or completed todos
 function applyFilter(filter) {
@@ -184,6 +202,7 @@ function toggleAllTodos(isCompleted) {
 
     updateTodoCount();
     reapplyCurrentFilter() // Update the count of active todos after toggling
+    ToggleClearCompletedButton();
 }
 
 
