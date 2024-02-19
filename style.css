@@ -1,12 +1,8 @@
-/* 
-Ni behöver inte återskapa "pappershög"-effekten under listan över anteckningar. Skuggan runt huvudinnehållet ska dock finnas med.
-Till skillnad från tidigare inlämningsuppgifter behöver ni här återskapa samma design som i exemplet, inklusive typsnitt, marginaler,
-textstorlekar, etc. Det är dock tillåtet att välja andra färger och/eller bakgrundsgrafik, om ni vill göra den till "er egen".
-media: hover*/
-
-/* reactive layout */
-
-@charset "utf-8";
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
 
 html,
 body {
@@ -28,6 +24,7 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 	font-weight: 300;
 	display: grid;
+    text-align: center;
 }
 
 header{
@@ -46,6 +43,29 @@ header{
 	color: #b83f45;
 }
 
+/* .todoapp header,
+.main {
+    margin: 0 auto;
+} */
+
+.input, #todoList {
+    width: 100%; 
+}
+
+#todoList {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#todoList li {
+    background-color: #fff;
+    border-bottom: 1px solid #ededed;
+    line-height: 1.6; 
+    padding: 10px; 
+}
+
+
 .input {
 	padding: 16px 16px 16px 60px;
     padding-left: 70px;
@@ -55,7 +75,7 @@ header{
     box-shadow: none;
 	background: rgba(197, 10, 10, 0.003);
 
-    background-image:
+    /* background-image:
     linear-gradient(45deg, transparent 50%, gray 50%),
     linear-gradient(135deg, gray 50%, transparent 50%),
     linear-gradient(to right, #ccc, #ccc);
@@ -67,7 +87,7 @@ header{
     5px 5px,
     5px 5px,
     1px 1.5em;
-    background-repeat: no-repeat;
+    background-repeat: no-repeat; */
 }
 
 .toggle-all-label {
@@ -239,7 +259,7 @@ label {
     visibility: visible;
 }
 
-.todo-list li:hover .destroy {
+#todoList li:hover .destroy {
     display: block; /* Show the button on hover */
 }
 
@@ -277,7 +297,6 @@ label {
 
 #todoList li .toggle {
     text-align: center;
-    width: 40px;
     height: auto;
     position: absolute;
     top: 0;
@@ -292,13 +311,15 @@ label {
     opacity: 0;
 }
 
+
 ul li {
     list-style: none;
-    font-size: 17px;
-    padding: 12px 8px 12px 50px;
+    padding: 15px 15px 15px 60px;
+    font: 24px "Helvetica Neue";
     user-select: none;
     cursor: pointer;
     position: relative;
+    display: block;
 }
 
 ul li::before{
@@ -341,6 +362,15 @@ ul li::before{
     padding: 10px;
     font-size: 14px;
 }
+
+.footer {
+	padding: 10px 15px;
+	height: 20px;
+	text-align: center;
+	font-size: 15px;
+	border-top: 1px solid #e6e6e6;
+}
+
 
 .filters li {
 	display: inline;
@@ -399,3 +429,5 @@ a{
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     text-align: center;
 }
+
+

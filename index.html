@@ -11,10 +11,10 @@
 
 <body>
     <section class="todoapp">
+        <h1>todos</h1>
         <header>
-            <h1>todos</h1>
             <div class="input-container">
-                <!-- <label for="toggleAll" class="toggle-all-label">🔽</label> -->
+                <label for="toggleAll" class="toggle-all-label">🔽</label>
                 <label for="toggleAll" class="toggle-all-label"></label>
                 <input type="checkbox" id="toggleAll" class="toggle-all" style="display:none;">
                 <input class="input" placeholder="What needs to be done?" autofocus id="input" data-todo="new" x>
@@ -30,7 +30,7 @@
     </main>
 
     
-    <div class="footer" data-todo="list"> <strong></strong>
+    <footer class="footer" data-todo="list"> <strong></strong>
         <span class="todo-count" data-todo="count"></span>
 
             <ul class="filters">
@@ -41,7 +41,7 @@
 
             <button class="clear-completed" data-todo="clear-completed">Clear completed</button>
 
-    </div>
+        </footer>
 
 
     <footer class="info">
