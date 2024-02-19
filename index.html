@@ -10,17 +10,18 @@
 </head>
 
 <body>
-    <section class="todoapp">
-        <h1>todos</h1>
+
         <header>
-            <div class="input-container">
-                <label for="toggleAll" class="toggle-all-label">🔽</label>
-                <label for="toggleAll" class="toggle-all-label"></label>
-                <input type="checkbox" id="toggleAll" class="toggle-all" style="display:none;">
-                <input class="input" placeholder="What needs to be done?" autofocus id="input" data-todo="new" x>
-            </div>
+            <h1>todos</h1>
         </header>
-    </section>
+
+        <form class="input-container">
+            <div>
+                <input type="checkbox" id="toggleAll" class="toggle-all">
+                <input class="input" placeholder="What needs to be done?" autofocus id="input">
+            </div>
+        </form>
+   
 
     <main class="main" style="display: none;">
         <div class="toggle-all-container">
@@ -29,19 +30,19 @@
         </div>
     </main>
 
-    
-    <footer class="footer" data-todo="list"> <strong></strong>
-        <span class="todo-count" data-todo="count"></span>
 
+    <footer class="footer" data-todo="list">
+        <div class="filters-container">
+            <span class="todo-count" data-todo="count"></span>
             <ul class="filters">
                 <li><a href="#/" class="selected">All</a></li>
                 <li><a href="#/active">Active</a></li>
                 <li><a href="#/completed">Completed</a></li>
             </ul>
-
-            <button class="clear-completed" data-todo="clear-completed">Clear completed</button>
-
-        </footer>
+        </div>
+        <button class="clear-completed" data-todo="clear-completed">Clear completed</button>
+    </footer>
+    
 
 
     <footer class="info">

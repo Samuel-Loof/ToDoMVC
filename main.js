@@ -1,3 +1,5 @@
+// After clearing completed todos. Reset clear completed button to be invis
+
 // Wait until the DOM is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', function () {
     // Setup all event listeners and initial UI state
@@ -87,7 +89,7 @@ function ToggleClearCompletedButton() {
     const clearCompletedButton = document.querySelector('.clear-completed');
 
     if (completedTodos.length > 0) {
-        clearCompletedButton.style.display = ''; // Or 'inline', 'inline-block'
+        clearCompletedButton.style.display = ''; 
     } else {
         clearCompletedButton.style.display = 'none';
     }
