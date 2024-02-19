@@ -1,5 +1,3 @@
-// After clearing completed todos. Reset clear completed button to be invis
-
 // Wait until the DOM is fully loaded before running the script
 document.addEventListener('DOMContentLoaded', function () {
     // Setup all event listeners and initial UI state
@@ -89,7 +87,7 @@ function ToggleClearCompletedButton() {
     const clearCompletedButton = document.querySelector('.clear-completed');
 
     if (completedTodos.length > 0) {
-        clearCompletedButton.style.display = ''; 
+        clearCompletedButton.style.display = ''; // Or 'inline', 'inline-block'
     } else {
         clearCompletedButton.style.display = 'none';
     }
@@ -136,12 +134,7 @@ function createTodo(todo) {
     checkbox.addEventListener('change', function () {
         li.classList.toggle("completed", this.checked);
         updateTodoCount();
-        li.classList.add("temp-red-border"); //temporary red border class
-        setTimeout(() => {
-            li.classList.remove("temp-red-border");
-        }, 2000);
     });
-
 
     let checkboxLabel = document.createElement("label");
     checkboxLabel.setAttribute("for", checkbox.id);
@@ -150,7 +143,7 @@ function createTodo(todo) {
     li.appendChild(checkbox);
     li.appendChild(checkboxLabel);
 
-    // Wrap the text in a span for better control
+
     let textSpan = document.createElement("span");
     textSpan.className = 'todo-text';
     textSpan.textContent = todo.text;
@@ -169,8 +162,6 @@ function createTodo(todo) {
 
     const list = document.getElementById('todoList');
     list.appendChild(li);
-
-    // When toggling all as completed, make sure that the checkbox is toggled aswell
 
     updateVisibilityOfMainAndFooter();
     updateTodoCount();
@@ -228,6 +219,8 @@ function updateVisibilityOfMainAndFooter() {
         footer.style.display = '';
     }
 }
+
+
 
 
 
