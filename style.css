@@ -87,9 +87,8 @@ h1 {
 
 .toggle-all-label {
     cursor: pointer;
-    margin-top: 10px;
+    margin-top: 11px;
 }
-
 
 .toggle-all+label {
     display: flex;
@@ -167,18 +166,18 @@ label {
     display: flex;
     align-items: center;
     background-color: #fff;
-    box-shadow: 0 1px 1px rgba(185, 175, 175, 0.954);
+    /* box-shadow: 0 1px 1px rgba(185, 175, 175, 0.954); */
 }
 
-#todoList div div input {
+/* #todoList div div input {
     appearance: none;
     width: 2rem;
     height: 2rem;
     border: 1px solid black;
     border-radius: 50px;
     transform: translateY(0.5rem);
-    /*hmmm */
-}
+    
+} */
 
 
 #todoList div div label {
