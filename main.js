@@ -78,8 +78,8 @@ function updateTodoCount() {
 function clearCompletedTodos() {
     let completedTodos = document.querySelectorAll('#todoList li.completed');
     completedTodos.forEach(todo => todo.remove()); // Remove each completed todo
-    updateVisibilityOfMainAndFooter(); 
-    updateTodoCount(); 
+    updateVisibilityOfMainAndFooter();
+    updateTodoCount();
 }
 
 function ToggleClearCompletedButton() {
@@ -163,13 +163,37 @@ function createTodo(todo) {
     const list = document.getElementById('todoList');
     list.appendChild(li);
 
+    labelInteractionForCheckbox(checkbox.id);
     updateVisibilityOfMainAndFooter();
     updateTodoCount();
 }
 
+// function to setup interaction for labels which with some help from CSS is used
+// to create a red border around the todo item (li) when clicking the checkbox
+function labelInteractionForCheckbox(checkboxId) {
+    //Find the label element in the document that is associated with the given checkbox ID
+    const label = document.querySelector(`label[for="${checkboxId}"]`);
+    const checkbox = document.getElementById(checkboxId);
+
+    // detect when the user starts clicking on the label, and therefore the checkbox
+    label.addEventListener('mousedown', function () {
+        // When the label is clicked (mousedown event), add the 'active'
+        //class to the checkbox's parent element
+        checkbox.parentElement.classList.add('active');
+    });
+    label.addEventListener('mouseup', function () {
+        checkbox.parentElement.classList.remove('active');
+    });
+    // If The 'mouseout' event fires when the mouse pointer leaves the label element.
+    label.addEventListener('mouseout', function () {
+        // If the mouse leaves the label before the mouse button is released,
+        checkbox.parentElement.classList.remove('active');
+    });
+}
+
 
 function deleteTodo(li) {
-    li.remove(); // Remove the specified todo item
+    li.remove();
 
     // Update UI based on the removed todo
     const list = document.getElementById('todoList');
@@ -178,6 +202,7 @@ function deleteTodo(li) {
         document.querySelector('footer').style.display = 'none';
     }
     updateTodoCount();
+    updateVisibilityOfMainAndFooter();
 }
 
 // Toggles the completion state of all todos based on the toggle all checkbox
