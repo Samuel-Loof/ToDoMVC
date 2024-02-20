@@ -57,6 +57,15 @@ h1 {
 }
 
 #toggleAll::before {
+    content: "";
+
+}
+
+.hidden {
+    display: none;
+}
+
+#toggleAll::after {
     content: "🔽";
     font-size: 17px;
 }

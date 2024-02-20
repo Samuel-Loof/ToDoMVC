@@ -214,9 +214,11 @@ function updateVisibilityOfMainAndFooter() {
     if (todoList.children.length === 0) {
         main.style.display = 'none';
         footer.style.display = 'none';
+        toggleAllTodos.classList.add('hidden');
     } else {
         main.style.display = '';
         footer.style.display = '';
+        toggleAllTodos.classList.remove('hidden');
     }
 }
 
