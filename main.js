@@ -204,23 +204,24 @@ function reapplyCurrentFilter() {
     applyFilter(currentfilter);
 }
 
-// Updates the visibility of the main section and footer based on todo count
 function updateVisibilityOfMainAndFooter() {
     const todoList = document.getElementById('todoList');
     const main = document.querySelector('.main');
     const footer = document.querySelector('.footer');
+    const toggleAll = document.getElementById('toggleAll');
 
-    // Show or hide the main section and footer based on whether there are todos
+    // Show or hide the main section, footer, and toggleAll checkbox based on whether there are todos
     if (todoList.children.length === 0) {
         main.style.display = 'none';
         footer.style.display = 'none';
-        toggleAllTodos.classList.add('hidden');
+        toggleAll.classList.add('hidden'); // Hide the toggleAll checkbox
     } else {
         main.style.display = '';
         footer.style.display = '';
-        toggleAllTodos.classList.remove('hidden');
+        toggleAll.classList.remove('hidden'); // Show the toggleAll checkbox
     }
 }
+
 
 
 
